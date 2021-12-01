@@ -3,7 +3,7 @@ from dominio import Usuario, Leilao, Lance, Avaliador
 edyane = Usuario("Edyane")
 lucas = Usuario("Lucas")
 
-lance_edyane = Lance(edyane, 180.0)
+lance_edyane = Lance(edyane, 100.0)
 lance_lucas =  Lance(lucas, 150.0)
 
 leilao = Leilao("Computador")
