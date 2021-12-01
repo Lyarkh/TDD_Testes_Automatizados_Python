@@ -5,20 +5,20 @@ from dominio import Lance, Usuario, Leilao, Avaliador
 
 class TestAvaliador(TestCase):
     
+    def setUp(self):
+        self.edyane = Usuario("Edyane")
+        self.lance_edyane = Lance(self.edyane, 100.0)
+        self.leilao = Leilao("Computador")
+
     def test_deve_retornar_o_maior_e_o_menor_valor_de_um_lance_quando_adicionados_em_ordem_crescente(self):
-        edyane = Usuario("Edyane")
         lucas = Usuario("Lucas")
+        self.lance_lucas =  Lance(lucas, 150.0)
 
-        lance_edyane = Lance(edyane, 100.0)
-        lance_lucas =  Lance(lucas, 150.0)
-
-        leilao = Leilao("Computador")
-
-        leilao.lances.append(lance_edyane)
-        leilao.lances.append(lance_lucas)
+        self.leilao.propoe(self.lance_edyane)
+        self.leilao.propoe(self.lance_lucas)
 
         avaliador = Avaliador()
-        avaliador.avalia(leilao)
+        avaliador.avalia(self.leilao)
 
         menor_valor_esperado = 100.0
         maior_valor_esperado = 150.0
@@ -27,19 +27,14 @@ class TestAvaliador(TestCase):
         self.assertEqual(maior_valor_esperado, avaliador.maior_lance)
 
     def test_deve_retornar_o_maior_e_o_menor_valor_de_um_lance_quando_adicionados_em_ordem_decrescente(self):
-        edyane = Usuario("Edyane")
         lucas = Usuario("Lucas")
+        self.lance_lucas =  Lance(lucas, 150.0)
 
-        lance_edyane = Lance(edyane, 100.0)
-        lance_lucas =  Lance(lucas, 150.0)
-
-        leilao = Leilao("Computador")
-
-        leilao.lances.append(lance_lucas)
-        leilao.lances.append(lance_edyane)
+        self.leilao.propoe(self.lance_lucas)
+        self.leilao.propoe(self.lance_edyane)
 
         avaliador = Avaliador()
-        avaliador.avalia(leilao)
+        avaliador.avalia(self.leilao)
 
         menor_valor_esperado = 100.0
         maior_valor_esperado = 150.0
@@ -48,16 +43,10 @@ class TestAvaliador(TestCase):
         self.assertEqual(maior_valor_esperado, avaliador.maior_lance)
     
     def test_deve_retornar_o_mesmo_valor_para_o_maior_e_menor_lance_quando_leilao_tiver_um_lance(self):
-        edyane = Usuario("Edyane")
-        
-        lance_edyane = Lance(edyane, 100.0)
-        
-        leilao = Leilao("Computador")
-        
-        leilao.lances.append(lance_edyane)
+        self.leilao.propoe(self.lance_edyane)
 
         avaliador = Avaliador()
-        avaliador.avalia(leilao)
+        avaliador.avalia(self.leilao)
 
         menor_valor_esperado = maior_valor_esperado = 100.0
        
@@ -66,22 +55,18 @@ class TestAvaliador(TestCase):
         self.assertEqual(maior_valor_esperado, avaliador.maior_lance)
 
     def test_deve_retornar_o_maior_e_o_menor_valor_quando_o_leilao_tiver_tres_lances(self):
-        edyane = Usuario("Edyane")
-        lucas = Usuario("Lucas")
         klovis = Usuario("Klovis")
+        lucas = Usuario("Lucas")
 
-        lance_edyane = Lance(edyane, 100.0)
-        lance_lucas =  Lance(lucas, 150.0)
-        lance_klovis =  Lance(klovis, 200.0)
+        lance_klovis = Lance(klovis, 200.0)
+        self.lance_lucas =  Lance(lucas, 150.0)
 
-        leilao = Leilao("Computador")
-
-        leilao.lances.append(lance_lucas)
-        leilao.lances.append(lance_edyane)
-        leilao.lances.append(lance_klovis)
+        self.leilao.propoe(self.lance_lucas)
+        self.leilao.propoe(self.lance_edyane)
+        self.leilao.propoe(lance_klovis)
 
         avaliador = Avaliador()
-        avaliador.avalia(leilao)
+        avaliador.avalia(self.leilao)
 
         menor_valor_esperado = 100.0
         maior_valor_esperado = 200.0
