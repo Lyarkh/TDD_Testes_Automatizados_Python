@@ -1,6 +1,6 @@
 import unittest
 from unittest import TestCase
-from dominio import Lance, Usuario, Leilao, Avaliador
+from dominio import Lance, Usuario, Leilao
 
 
 class TestAvaliador(TestCase):
@@ -17,14 +17,11 @@ class TestAvaliador(TestCase):
         self.leilao.propoe(self.lance_edyane)
         self.leilao.propoe(self.lance_lucas)
 
-        avaliador = Avaliador()
-        avaliador.avalia(self.leilao)
-
         menor_valor_esperado = 100.0
         maior_valor_esperado = 150.0
 
-        self.assertEqual(menor_valor_esperado, avaliador.menor_lance)
-        self.assertEqual(maior_valor_esperado, avaliador.maior_lance)
+        self.assertEqual(menor_valor_esperado, self.leilao.menor_lance)
+        self.assertEqual(maior_valor_esperado, self.leilao.maior_lance)
 
     def test_deve_retornar_o_maior_e_o_menor_valor_de_um_lance_quando_adicionados_em_ordem_decrescente(self):
         lucas = Usuario("Lucas")
@@ -33,26 +30,19 @@ class TestAvaliador(TestCase):
         self.leilao.propoe(self.lance_lucas)
         self.leilao.propoe(self.lance_edyane)
 
-        avaliador = Avaliador()
-        avaliador.avalia(self.leilao)
-
         menor_valor_esperado = 100.0
         maior_valor_esperado = 150.0
 
-        self.assertEqual(menor_valor_esperado, avaliador.menor_lance)
-        self.assertEqual(maior_valor_esperado, avaliador.maior_lance)
+        self.assertEqual(menor_valor_esperado, self.leilao.menor_lance)
+        self.assertEqual(maior_valor_esperado, self.leilao.maior_lance)
     
     def test_deve_retornar_o_mesmo_valor_para_o_maior_e_menor_lance_quando_leilao_tiver_um_lance(self):
         self.leilao.propoe(self.lance_edyane)
 
-        avaliador = Avaliador()
-        avaliador.avalia(self.leilao)
-
         menor_valor_esperado = maior_valor_esperado = 100.0
-       
 
-        self.assertEqual(menor_valor_esperado, avaliador.menor_lance)
-        self.assertEqual(maior_valor_esperado, avaliador.maior_lance)
+        self.assertEqual(menor_valor_esperado, self.leilao.menor_lance)
+        self.assertEqual(maior_valor_esperado, self.leilao.maior_lance)
 
     def test_deve_retornar_o_maior_e_o_menor_valor_quando_o_leilao_tiver_tres_lances(self):
         klovis = Usuario("Klovis")
@@ -65,14 +55,11 @@ class TestAvaliador(TestCase):
         self.leilao.propoe(self.lance_edyane)
         self.leilao.propoe(lance_klovis)
 
-        avaliador = Avaliador()
-        avaliador.avalia(self.leilao)
-
         menor_valor_esperado = 100.0
         maior_valor_esperado = 200.0
 
-        self.assertEqual(menor_valor_esperado, avaliador.menor_lance)
-        self.assertEqual(maior_valor_esperado, avaliador.maior_lance)
+        self.assertEqual(menor_valor_esperado, self.leilao.menor_lance)
+        self.assertEqual(maior_valor_esperado, self.leilao.maior_lance)
 
 #Deve importar unittest para que apareça o teste no prompt do Visual Studio Code
 if __name__ == "__main__":
