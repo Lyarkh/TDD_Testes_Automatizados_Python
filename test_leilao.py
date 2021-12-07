@@ -4,8 +4,6 @@ from dominio import Lance, Usuario, Leilao
 
 class TestLeilao(TestCase):
 
-    # test_quando_adicionados_em_ordem_crescente_deve_retornar_o_maior_e_o_menor_valor_de_um_lance
-
     def setUp(self):
         self.edyane = Usuario('Edyane')
         self.lance_da_edyane = Lance(self.edyane, 150.0)
@@ -79,7 +77,6 @@ class TestLeilao(TestCase):
         with self.assertRaises(ValueError):
             self.leilao.propoe(self.lance_da_edyane)
             self.leilao.propoe(lance_da_edyane_02)
-
 
 # #Deve importar unittest para que apareça o teste no prompt do Visual Studio Code
 if __name__ == "__main__":
