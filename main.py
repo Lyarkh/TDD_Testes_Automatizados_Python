@@ -1,5 +1,6 @@
 from src.leilao.dominio import Usuario, Leilao, Lance
-
+import sys
+print(sys.path)
 edyane = Usuario("Edyane")
 lucas = Usuario("Lucas")
 
